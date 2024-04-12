@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:msg_app/components/my_drawer.dart';
 import 'package:msg_app/components/user_tile.dart';
@@ -10,8 +11,17 @@ class HomePage  extends StatelessWidget {
    HomePage ({super.key});
 
   //chat and auth services
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final ChatService _chatService = ChatService();
+
   
+  
+  
+  
+  // get current user
+  User? getCurrentUser(){
+    return _auth.currentUser;
+  }
 
 
   void logout (){
@@ -55,7 +65,8 @@ class HomePage  extends StatelessWidget {
   // build inividual user list item
   Widget _buildUserListItem(Map <String, dynamic> userData, BuildContext context){
 // display all users except current user
-
+{
+  if(userData["email"] != getCurrentUser()!.email){
    return UserTile(text: userData["email"],
     onTap: (){
       // tapped on a user -> go to chat
@@ -68,6 +79,12 @@ class HomePage  extends StatelessWidget {
     }
     );
   }
+  else {
+    return Container();
+  }
+
+  }
   
 
+  }
 }
