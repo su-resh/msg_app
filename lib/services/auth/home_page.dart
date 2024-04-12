@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
         }
         // Return a ListView of user widgets
         return ListView(
-          children: (snapshot.data ?? []).map<Widget>((userData) {
+          children: (snapshot.data ?? []).map<Widget>((userData ) {
             // Build a widget for each user data
             return _buildUserListItem(context, userData); // Pass context here
           }).toList(), // Convert Iterable to List
