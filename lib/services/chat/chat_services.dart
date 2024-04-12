@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-class ChatServices{
+class ChatService{
   // get unstance of firestore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 

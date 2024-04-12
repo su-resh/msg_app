@@ -1,16 +1,23 @@
-import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:msg_app/components/my_drawer.dart';
 import 'package:msg_app/components/user_tile.dart';
+import 'package:msg_app/pages/chat_page.dart';
+import 'package:msg_app/services/auth/auth_service.dart';
 import 'package:msg_app/services/chat/chat_services.dart';
-import '../../pages/chat_page.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}); // Typo fixed: HomaPage -> HomePage
+class HomePage  extends StatelessWidget {
+   HomePage ({super.key});
 
-  // chat & auth services
-  final ChatServices _chatServices = ChatServices();
+  //chat and auth services
+  final ChatService _chatService = ChatService();
   
+
+
+  void logout (){
+    final auth = AuthService();
+    auth.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,47 +25,49 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      drawer: MyDrawer(),
-      body: _buildUserList(context), // Pass context here
+      drawer: const MyDrawer(),
+      body: _buildUserList(),
     );
   }
 
-  // build a list of users except current logged-in user
-  Widget _buildUserList(BuildContext context) { // Pass context as a parameter
-    return StreamBuilder<List<Map<String, dynamic>>>( // Specify the type of stream
-      stream: _chatServices.getUsersStream(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
+  // build a list of users except for current
+  Widget _buildUserList(){
+    return StreamBuilder(
+ stream: _chatService.getUsersStream(),
+       builder: (context, snapshot){
+        // errror
+        if(snapshot.hasError){
           return const Text("Error");
         }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator()); // Show a loading indicator
+
+        //loading...
+        if  (snapshot.connectionState == ConnectionState.waiting){
+          return Center(child: const CircularProgressIndicator());
         }
-        // Return a ListView of user widgets
-        return ListView(
-          children: (snapshot.data ?? []).map<Widget>((userData ) {
-            // Build a widget for each user data
-            return _buildUserListItem(context, userData); // Pass context here
-          }).toList(), // Convert Iterable to List
-        );
-      },
+
+        // returnlist view
+       return ListView(
+  children: snapshot.data!.map<Widget>((userData) => _buildUserListItem(userData, context)).toList(),
+    );
+       }
+      );
+  }
+  // build inividual user list item
+  Widget _buildUserListItem(Map <String, dynamic> userData, BuildContext context){
+// display all users except current user
+
+   return UserTile(text: userData["email"],
+    onTap: (){
+      // tapped on a user -> go to chat
+      Navigator.push(context, MaterialPageRoute(builder: (context) => 
+      ChatPage(
+        recieverEmail: userData["email"],
+      ), 
+      ),
+      );
+    }
     );
   }
+  
 
-  // Function to build user widget
-  Widget _buildUserListItem(BuildContext context, Map<String, dynamic> userData) { // Pass context as a parameter
-    // Implement how you want to display each user
-   return UserTile(
-    text: userData["email"],
-    onTap: (){
-      Navigator.push(context ,
-       MaterialPageRoute(
-        builder:(context) => ChatPage(
-          recieverEmail: userData["email"] ,
-        )
-      ,)
-      );
-    },
-   );
-  }
 }
