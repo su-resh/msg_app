@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:msg_app/services/auth/auth_service.dart';
 import 'package:msg_app/components/my_button.dart';
-import 'package:msg_app/components/my_textFIeld.dart';
+import 'package:msg_app/components/my_textField.dart';
 
 class LoginPage extends StatelessWidget {
-// email and pw text controller
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _pwController = TextEditingController();
+  final void Function()? onTap;
 
+  LoginPage({Key? key, required this.onTap}) : super(key: key);
 
-  LoginPage({super.key});
+  void login(BuildContext context) async {
+    final authService = AuthService();
 
-  // login method
-  void login() {
- 
+    try {
+      await authService.signInWithEmailPassword(
+          _emailController.text, _pwController.text);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(e.toString()),  
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -20,16 +44,12 @@ class LoginPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Logo
           Icon(
             Icons.message,
             size: 60,
             color: Theme.of(context).colorScheme.primary,
           ),
-
           const SizedBox(height: 50),
-
-          //Welcome msg
           Text(
             "Welcome Back!",
             style: TextStyle(
@@ -37,41 +57,43 @@ class LoginPage extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-
           const SizedBox(height: 25),
-          //email textfield
           MyTextField(
             hintText: "Email",
             obscureText: false,
             controller: _emailController,
           ),
           const SizedBox(height: 10),
-          //password textfield
           MyTextField(
             hintText: "Password",
             obscureText: true,
             controller: _pwController,
           ),
-
           const SizedBox(height: 25),
-          //login button
           MyButton(
-          text: "Login",
-          onTap: login,
+            text: "Login",
+            onTap: () => login(context),
           ),
-
-           const SizedBox(height: 25),
-          // register now
+          const SizedBox(height: 25),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Not a Member?", 
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary),),
-              Text("Register now", style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.primary,
-              ),),
+              Text(
+                "Not a Member?",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              GestureDetector(
+                onTap: onTap,
+                child: Text(
+                  "Register now",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
             ],
           )
         ],
