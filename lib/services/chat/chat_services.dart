@@ -19,7 +19,7 @@ class ChatService{
 }
 
   // send message
-Future<void> sendMessage(String receiverID, message)
+void sendMessage(String receiverID, message)
 async{
   // get current user info
   final String currentUserId = _auth.currentUser!.uid;
@@ -42,7 +42,7 @@ async{
   
   // add message to database
   await _firestore.collection("chat_rooms")
-  .doc(chatRoomID).collection("messages")
+  .doc(chatRoomID).collection("message")
   .add(newMessage.toMap());
 }
 
@@ -53,7 +53,7 @@ async{
     ids.sort(); // sort the ids
     String chatRoomID = ids.join("_");
     return _firestore.collection("chat_rooms")
-    .doc(chatRoomID).collection("messages")
+    .doc(chatRoomID).collection("message")
     .orderBy("timestamp", descending: true)
     .snapshots();
    

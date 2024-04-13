@@ -11,19 +11,28 @@ class MyButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(8), 
+Widget build(BuildContext context) {
+  return Center(
+    child: SizedBox(
+      width: 200, // Adjust the width as needed
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
           ),
-        padding: EdgeInsets.all(25),
-        margin: EdgeInsets.symmetric(horizontal: 25),
-        child: Center(child: Text(text,),
-       ),
+          padding:const  EdgeInsets.symmetric(vertical: 25, horizontal: 20), 
         ),
-    );
-  }
+        child: Center(
+          child: Text(
+            text,
+            
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 }

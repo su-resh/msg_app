@@ -14,10 +14,6 @@ class HomePage  extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final ChatService _chatService = ChatService();
 
-  
-  
-  
-  
   // get current user
   User? getCurrentUser(){
     return _auth.currentUser;
@@ -32,8 +28,12 @@ class HomePage  extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text("Home"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.grey,
       ),
       drawer: const MyDrawer(),
       body: _buildUserList(),
