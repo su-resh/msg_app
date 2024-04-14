@@ -28,7 +28,7 @@ class RegisterPage extends StatelessWidget {
     } else {
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) => const AlertDialog(
           title: Text("Password doesn't match."),
         ),
       );
@@ -42,10 +42,11 @@ class RegisterPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const 
           Icon(
-            Icons.message,
+            Icons.person,
             size: 60,
-            color: Theme.of(context).colorScheme.primary,
+            color: Colors.black87,
           ),
           const SizedBox(height: 50),
           Text(

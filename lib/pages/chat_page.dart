@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:msg_app/components/my_textFIeld.dart';
@@ -38,8 +40,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
+      backgroundColor: Theme.of(context).colorScheme.background,   appBar: AppBar(
         title: Text(recieverEmail),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -51,7 +52,6 @@ class ChatPage extends StatelessWidget {
           Expanded(
             child: _buildMessagesList(),
           ),
-
           // user input
           _buildMessageInput(),
         ],
@@ -108,7 +108,7 @@ class ChatPage extends StatelessWidget {
   // build message input
   Widget _buildMessageInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0),
+      padding: const EdgeInsets.only(bottom: 10.0),
       child: Row(
         children: [
           Expanded(

@@ -44,10 +44,10 @@ class LoginPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.message,
+         const Icon(
+            Icons.person,
             size: 60,
-            color: Theme.of(context).colorScheme.primary,
+            color: Colors.black87,
           ),
           const SizedBox(height: 50),
           Text(
