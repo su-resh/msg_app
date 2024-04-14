@@ -1,11 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:msg_app/components/my_textFIeld.dart';
 import 'package:msg_app/services/auth/auth_service.dart';
 import 'package:msg_app/services/chat/chat_services.dart';
-
 import '../components/chat_bubble.dart';
 
 class ChatPage extends StatefulWidget {

@@ -74,6 +74,27 @@
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 
-# Api
-lib\firebase_options.dart
+# Firebase specific
+# Firebase configuration files
+/android/app/google-services.json
+/ios/Runner/GoogleService-Info.plist
 
+# Firebase local development files
+/firebase/*
+!/firebase/.keep
+
+# Firebase emulator data
+/.firebase
+
+# Web specific
+/web/node_modules/
+/web/.dart_tool/
+/web/build/
+
+# Desktop specific (assuming Flutter Desktop)
+/desktop/ios/
+/desktop/android/
+/desktop/linux/
+/desktop/windows/
+/desktop/macos/
+/desktop/build/
