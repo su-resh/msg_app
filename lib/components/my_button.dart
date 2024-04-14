@@ -27,6 +27,10 @@ Widget build(BuildContext context) {
         child: Center(
           child: Text(
             text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
             
           ),
         ),

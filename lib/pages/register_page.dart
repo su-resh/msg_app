@@ -40,65 +40,71 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/signup.png", height: 300, width: 400
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 20,
               ),
-            const SizedBox(height: 10),
-            Text(
-              "Let's Create an account for you!",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 15),
-            MyTextField(
-              hintText: "Email",
-              obscureText: false,
-              controller: _emailController,
-            ),
-            const SizedBox(height: 10),
-            MyTextField(
-              hintText: "Password",
-              obscureText: true,
-              controller: _pwController,
-            ),
-            const SizedBox(height: 10),
-            MyTextField(
-              hintText: "Confirm password",
-              obscureText: true,
-              controller: _confirmPwController,
-            ),
-            const SizedBox(height: 25),
-            MyButton(
-              text: "Register",
-              onTap: () => register(context),
-            ),
-            const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Already a Member?",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+              Image.asset("assets/signup.png", height: 300, width: 400
                 ),
-                GestureDetector(
-                  onTap: onTap,
-                  child: Text(
-                    "Login now",
+              const SizedBox(height: 5),
+              Text(
+                "Let's Create an account for you!",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 15),
+              MyTextField(
+                hintText: "Email",
+                obscureText: false,
+                controller: _emailController,
+              ),
+              const SizedBox(height: 10),
+              MyTextField(
+                hintText: "Password",
+                obscureText: true,
+                controller: _pwController,
+              ),
+              const SizedBox(height: 10),
+              MyTextField(
+                hintText: "Confirm password",
+                obscureText: true,
+                controller: _confirmPwController,
+              ),
+              const SizedBox(height: 25),
+              MyButton(
+                text: "Register",
+                onTap: () => register(context),
+              ),
+              const SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already a Member?",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                  GestureDetector(
+                    onTap: onTap,
+                    child: Text(
+                      "Login now",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

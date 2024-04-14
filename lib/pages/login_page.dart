@@ -52,10 +52,11 @@ class LoginPage extends StatelessWidget {
               "Welcome Back!",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
-                fontSize: 16,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 25),
             MyTextField(
               hintText: "Email",
               obscureText: false,

@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 // Reduce this value, I am keeping 10 for testing purpose
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const AuthGate()),
       );
@@ -39,16 +39,21 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 162, 166, 171),
-              Color.fromARGB(253, 183, 179, 179),
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
-        ),
+        decoration: BoxDecoration(
+  gradient: LinearGradient(
+    colors: [
+      Colors.blue.shade900,
+      Colors.blue.shade800,
+      Colors.blue.shade700,
+      Colors.blue.shade600,
+      Colors.blue.shade500,
+    ],
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+  ),
+),
+
+
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
