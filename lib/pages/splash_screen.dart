@@ -49,15 +49,12 @@ class _SplashScreenState extends State<SplashScreen>
             end: Alignment.bottomLeft,
           ),
         ),
-        child: const Column(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.message_rounded,
-              size: 100,
-              color: Colors.black38,
+            Image.asset("assets/messages.png", height: 300, width: 400
             ),
-            Text(
+          const Text(
               "M E S S A G E",
               style: TextStyle(
                 color: Colors.black38,
