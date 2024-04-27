@@ -45,10 +45,9 @@ class RegisterPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 20,
+                height: 120,
               ),
-              Image.asset("assets/signup.png", height: 300, width: 400
-                ),
+              Image.asset("assets/signup.png", height: 150, width: 250),
               const SizedBox(height: 5),
               Text(
                 "Let's Create an account for you!",
